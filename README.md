@@ -4,6 +4,9 @@ Ported from https://github.com/cszn/DPIR, https://github.com/HolyWu/vs-dpir
 
 ## Still in beta.
 
+If you only work on CPU, you can set parallel and have a speed improvement at the cost of maxed RAM (probably)
+If you're on GPU you will see the same speed.
+
 # Dependencies
 
 - Torch (Tested with 1.9)
