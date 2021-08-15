@@ -45,8 +45,10 @@ Keep in mind you'll have to set [VS_LIB_PATH](https://github.com/vapoursynth/vap
 
 # "Todo List"
 
+Implement refield tensor in c++ (pain), so it can work on non mod-8 clips.
+
 Implement a semaphore with cuda api to limit concurrent threads so it won't try to allocate absurd amounts of VRAM.
 
-Add Deblur/Demosaick/SuperResolution
+Add Deblur/Demosaick/SuperResolution.
 
-If possible, OpenCL or ROCm optimization 
+If possible, OpenCL or ROCm optimization.

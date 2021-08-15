@@ -84,19 +84,28 @@ struct UNetRes : torch::nn::Module {
   torch::nn::Sequential m_up1{nullptr}, m_up2{nullptr}, m_up3{nullptr};
 };
 
-// def test_onesplit(model, L, refield=64, sf=1):
-//   h, w = L.size()[-2:]
+// def refield_tensor(img_L, model):
+//   refield = 64
+//   h, w = img_L.size()[-2:]
+//   r_h, r_w = h // 2, w // 2
+//   s_h, s_w = (r_h // refield + 1) * refield, (r_w // refield + 1) * refield
 
-//   top = slice(0, (h // 2 // refield + 1) * refield)
-//   bottom = slice(h - (h // 2 // refield + 1) * refield, h)
-//   left = slice(0, (w // 2 // refield + 1) * refield)
-//   right = slice(w - (w // 2 // refield + 1) * refield, w)
-//   Ls = [L[..., top, left], L[..., top, right], L[..., bottom, left], L[..., bottom, right]]
-//   Es = [model(Ls[i]) for i in range(4)]
+//   top = slice(0, s_h)
+//   bottom = slice(h - s_h, h)
+//   left = slice(0, s_w)
+//   right = slice(w - s_w, w)
+
+//   Ls = [img_L[..., top, left], img_L[..., top, right], img_L[..., bottom, left], img_L[..., bottom, right]]
+
+//   Es = [model.forward(Ls[i]) for i in range(4)]
+
 //   b, c = Es[0].size()[:2]
-//   E = torch.zeros(b, c, sf * h, sf * w).type_as(L)
-//   E[..., :h // 2 * sf, :w // 2 * sf] = Es[0][..., :h // 2 * sf, :w // 2 * sf]
-//   E[..., :h // 2 * sf, w // 2 * sf:w * sf] = Es[1][..., :h // 2 * sf, (-w + w // 2) * sf:]
-//   E[..., h // 2 * sf:h * sf, :w // 2 * sf] = Es[2][..., (-h + h // 2) * sf:, :w // 2 * sf]
-//   E[..., h // 2 * sf:h * sf, w // 2 * sf:w * sf] = Es[3][..., (-h + h // 2) * sf:, (-w + w // 2) * sf:]
+
+//   E = torch.zeros(b, c, h, w).type_as(img_L)
+
+//   E[..., : r_h, :r_w] = Es[0][..., :r_h, :r_w]
+//   E[..., : r_h, r_w:w] = Es[1][..., :r_h, (-w + r_w):]
+//   E[..., r_h:h, :r_w] = Es[2][..., (-h + r_h):, :r_w]
+//   E[..., r_h:h, r_w:w] = Es[3][..., (-h + r_h):, (-w + r_w):]
+
 //   return E
