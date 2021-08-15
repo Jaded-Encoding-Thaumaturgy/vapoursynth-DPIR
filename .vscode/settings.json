@@ -2,7 +2,6 @@
   "cmake.configureSettings": {
     "VS_LIB_PATH": "D:\\CPPLibs\\VapourSynth",
     "TORCH_LIB_PATH": "D:\\CPPLibs\\libtorch",
-    "NUMCPP_LIB_PATH": "D:\\CPPLibs\\NumCpp",
     "BOOST_LIB_PATH": "D:\\CPPLibs\\boost"
   },
   "files.associations": {
