@@ -9,9 +9,9 @@ If you're on GPU you will see the same speed.
 
 # Dependencies
 
-- Torch (Tested with 1.9)
+- [Torch](https://pytorch.org/get-started/locally/) (Tested with 1.9)
   - Cuda 10 (Tested on Cuda 11.1)
-- VapourSynth (duh)
+- [VapourSynth](https://github.com/vapoursynth/vapoursynth) (duh)
 
 VapourSynth DPIR Implementation
 
@@ -41,7 +41,7 @@ I prefer doing it in VSCode, but
 cmake --build ./build --config Release --target vsdpir -j 26 --
 ```
 
-Keep in mind you'll have to set VS_LIB_PATH, TORCH_LIB_PATH, BOOST_LIB_PATH manually.
+Keep in mind you'll have to set [VS_LIB_PATH](https://github.com/vapoursynth/vapoursynth), [TORCH_LIB_PATH](https://pytorch.org/get-started/locally/), [BOOST_LIB_PATH](https://www.boost.org/users/download/) manually.
 
 # "Todo List"
 
